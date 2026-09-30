@@ -19,6 +19,7 @@ func main() {
 	addrPtr := flag.String("ip", "127.0.0.1:8030", "IP:port string to connect to")
 	flag.Parse()
 	//TODO Try to connect to the server
+	
 	//TODO Start asynchronously reading and displaying messages
 	//TODO Start getting and sending user messages.
 }
