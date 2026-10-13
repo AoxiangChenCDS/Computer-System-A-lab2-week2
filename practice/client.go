@@ -4,7 +4,7 @@ package main
 import ("bufio"
 	"fmt"
 	"net"
-	"flag"
+	"os"
 )
 
 func read(conn net.Conn) {
@@ -14,9 +14,14 @@ func read(conn net.Conn) {
 }
 
 func main() {
-	msgP := flag.String("msg", "Default","Message to send")
-	flag.Parse()
+	// msgP := flag.String("msg", "CDS","Message to send")
+	// flag.Parse()
+	stdin := bufio.NewReader(os.Stdin)
 	conn, _ := net.Dial("tcp", "localhost:8030")
-	fmt.Fprintln(conn,*msgP)
-	
+	for {
+		fmt.Println("Enter message to send:")
+		msg,_ := stdin.ReadString('\n')
+		fmt.Fprintln(conn,msg)
+		read(conn)
+	}
 }
